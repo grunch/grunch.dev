@@ -1,0 +1,65 @@
+# The URL the site will be built for
+base_url = "https://grunch.dev"
+
+title = "Grunch"
+description = ""
+default_language = "en"
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+theme = "DeepThought"
+external_links_target_blank = true
+languages = [
+    {code = "es", feed = true}
+]
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+highlight_theme = "base16-ocean-dark"
+render_emoji = true
+
+[extra]
+navbar_items = [
+    { code = "en", nav_items = [
+        { url = "$BASE_URL/", name = "Home" },
+        { url = "$BASE_URL/node", name = "Node" },
+        { url = "$BASE_URL/consulting", name = "Consulting" },
+        { url = "$BASE_URL/docs", name = "Docs" },
+        { url = "$BASE_URL/guide", name = "Guides" },
+        { url = "$BASE_URL/about", name = "About" },
+        { url = "$BASE_URL/es", name = "Español" },
+    ] },
+    { code = "es", nav_items = [
+        { url = "$BASE_URL/es", name = "Inicio" },
+        { url = "$BASE_URL/es/node", name = "Nodo" },
+        { url = "$BASE_URL/es/lightning", name = "Lightning" },
+        { url = "$BASE_URL/es/consulting", name = "Consultoría" },
+        { url = "$BASE_URL/es/docs", name = "Documentos" },
+        { url = "$BASE_URL/es/cursos", name = "Cursos" },
+        { url = "$BASE_URL/es/guide", name = "Guias" },
+        { url = "$BASE_URL/es/about", name = "About" },
+        { url = "$BASE_URL/", name = "English" },
+    ] }
+]
+
+# Add links to favicon, you can use https://realfavicongenerator.net/ to generate favicon for your site
+[extra.favicon]
+favicon_16x16 = "/icons/favicon-16x16.png"
+favicon_32x32 = "/icons/favicon-32x32.png"
+apple_touch_icon = "/icons/apple-touch-icon.png"
+safari_pinned_tab = "/icons/safari-pinned-tab.svg"
+webmanifest = "/icons/site.webmanifest"
+
+# Author details
+[extra.author]
+name = "Francisco Calderón"
+avatar = "/images/rayo.jpg"
+
+# Social links
+[extra.social]
+github = "grunch"
+keybase = "negrunch"
+twitter = "negrunch"
