@@ -56,7 +56,7 @@ webmanifest = "/icons/site.webmanifest"
 # Author details
 [extra.author]
 name = "Francisco Calderón"
-avatar = "/images/rayo.jpg"
+#avatar = "/images/rayo.jpg"
 
 # Social links
 [extra.social]
