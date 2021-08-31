@@ -25,6 +25,7 @@ render_emoji = true
 navbar_items = [
     { code = "en", nav_items = [
         { url = "$BASE_URL/", name = "Home" },
+        { url = "$BASE_URL/blog", name = "Blog" },
         { url = "$BASE_URL/node", name = "Node" },
         { url = "$BASE_URL/consulting", name = "Consulting" },
         { url = "$BASE_URL/docs", name = "Docs" },
@@ -34,6 +35,7 @@ navbar_items = [
     ] },
     { code = "es", nav_items = [
         { url = "$BASE_URL/es", name = "Inicio" },
+        { url = "$BASE_URL/es/blog", name = "Blog" },
         { url = "$BASE_URL/es/node", name = "Nodo" },
         { url = "$BASE_URL/es/lightning", name = "Lightning" },
         { url = "$BASE_URL/es/consulting", name = "Consultoría" },
@@ -63,3 +65,6 @@ name = "Francisco Calderón"
 github = "grunch"
 keybase = "negrunch"
 twitter = "negrunch"
+
+[extra.analytics]
+google = "G-YPJHF2JFVX"
