@@ -69,7 +69,7 @@ Vamos a crear una venta de 100 satoshis por 212121 bolívares (VES) e indicamos 
 ```
 Si el método de pago es de una sola palabra no son necesarias las comillas.
 
-Luego el bot te escribirá en privado que ha publicado la orden de venta en el canal de bot, ahora solo debemos esperar que alguien la tome.
+Luego el bot te escribirá en privado que ha publicado la orden de venta en el `canal de bot`, ahora solo debemos esperar que alguien la tome.
 
 También podemos crear una orden sin indicar el monto en satoshis, solo debes poner 0 (cero) en el campo "monto en sats", ejemplo:
 ```
@@ -90,18 +90,25 @@ Vendo satoshis por el equivalente en bolívares de 10 dólares, tasa de cambio d
 # Vendedor
 /sell 0 10 usdve pagomovil
 ```
-Una vez que el comprador presiona el botón "Comprar satoshis" de la orden de venta, recibirá un mensaje privado del bot indicandole que le envíe una factura lightning por `N` satoshis, el bot te da un ejemplo de como debes ejecutar el comando /addinvoice
-```
-/addinvoice 614daa85bb6b9439c2fff838 <lightning_invoice>
-```
-Para continuar el comprador debe ir a su wallet, generar una invoice con monto `N` o sin monto, y enviarsela al bot de esta manera.
-```
-# Comprador
-/addinvoice 614daa85bb6b9439c2fff838 lnbc1ps5m3w6pp53xu4lq7evu77vs3umlx2lfxs046t7me6sxkmcdzpendaj4sx92hqdqqcqzpgxqyz5vqsp56lgvgr39yj9xsywmxwufxm9el0p2ufvw2p2j66029glynf0cu2hs9qyyssqw54dy02uem7zunkkl835ctfj5dtzwqgtd0sfqlfxapspn33lqpljr65tfdakh466ldafrgzpzwyzmh0lxdl5sd3chvcam0w7z26pa6spr6dza8
-```
+El comprador debe presionar el botón **Comprar satoshis** de la orden de venta.
+
+![Comprar satoshis](/images/comprar-sats.jpg)
+
+Luego recibirá un mensaje privado del bot indicándole que ha tomado esa orden de venta, para continuar debe presionar el botón **Continuar**
+
+![Continuar](/images/continuar.jpg)
+
+Ahora el bot le dice al comprador que le envíe una factura lightning por `N` satoshis, el monto de la factura debe ser igual al indicado por el bot, pero las facturas sin monto también son aceptadas.
+
+![Add Invoice](/images/addinvoice.jpg)
+
+Para continuar el comprador debe ir a su wallet, generar una invoice con monto `N` o sin monto, y enviársela al bot.
+
+![Invoice Ok](/images/invoice-ok.jpg)
+
 El bot le responderá al comprador le ha enviado una solicitud de pago al vendedor para que envíe los satoshis, en lo que el vendedor realice el pago los pondrá en contacto.
 
-El vendedor tiene 10 minutos para realizar el pago, una vez el vendedor haya realizado el pago, el bot le dirá por privado a ambas partes el username de la contraparte para que se pongan en contacto y el vendedor le de los datos al comprador para recibir el dinero fiat, luego de que el comprador envíes el dinero debe indicarselo al bot con el comando /fiatsent <order_id>
+El vendedor tiene 10 minutos para realizar el pago, una vez el vendedor haya realizado el pago, el bot le dirá por privado a ambas partes el username de la contraparte para que se pongan en contacto y el vendedor le de los datos al comprador para recibir el dinero fiat, luego de que el comprador envíe el dinero, debe indicárselo al bot con el comando `/fiatsent <order_id>`.
 ```
 # Comprador
 /fiatsent 614daa85bb6b9439c2fff838
