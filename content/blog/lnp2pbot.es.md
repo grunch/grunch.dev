@@ -6,7 +6,7 @@ date = 2021-09-24
 
 Junto con [Satoshi en Venezuela](https://satoshienvenezuela.com) hemos estado trabajando en un nuevo [bot para telegram](https://twitter.com/lnp2pBot) que permite intercambiar dinero fiat por satoshis utilizando [Lightning Network](https://lightning.network/). 
 
-Nuestra idea principal es tener una herramienta para poder comprar/vender Bitcoin sin kyc y sin custodia de los fondos del usuario, hacer esto en un bot telegram lightning es muy difícil, hemos estando pensando hasta que dimos con un método al cual nos referimos como "trust minimized", donde utilizamos hold invoices para no custodiar los fondos de los usuarios hasta el último segundo q liberamos o retornamos los fondos.
+Nuestra idea principal es tener una herramienta para poder comprar/vender Bitcoin **sin kyc** y **sin custodia** de los fondos del usuario, hacer esto en un bot telegram lightning es muy difícil, hemos estando pensando hasta que dimos con un método donde utilizamos hold invoices para no custodiar los fondos de los usuarios hasta el último segundo q liberamos o retornamos los fondos.
 
 # Workflow
 Para entender como trabaja el bot veamos el workflow de una orden de venta:
