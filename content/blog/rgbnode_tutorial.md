@@ -11,7 +11,6 @@ En este tutorial explicamos como utilizar RGB-node para crear un token fungible 
 Se recomienda el uso de alguna distribución Linux, este demo se realizó utilizando `Pop!_OS`, la cual está basada en Ubuntu y tener instalados:
 
 - [cargo](https://doc.rust-lang.org/book/ch01-01-installation.html#installation)
-- [Bitcoin core](https://github.com/bitcoin/bitcoin/)
 - [git](https://git-scm.com/downloads)
 
 *Nota: Este tutorial muestra la ejecución de comandos en una terminal linux, para diferenciar lo que escribe el usuario y la respuesta que obtiene en la terminal incluimos el `$` simbolizando el bash prompt.*
@@ -56,7 +55,7 @@ RGB-node no maneja ningún tipo de funcionalidad relacionada con la wallet, solo
 - Una `receive_utxo` en el que `rgb-node-1` recibe el activo
 - Una transacción de bitcoin parcialmente firmada (`tx.psbt`), cuya llave pública de salida (`output pubkey`) se retocará para incluir un compromiso con la transferencia.
 
-Para esto utilizaremos el `cli` de bitcoin core, necesitamos tener corriendo el demonio `bitcoind` en testnet, primero listamos nuestras transacciones de salida no gastadas y seleccionamos dos, una será la `issuance_utxo` y la otra `change_utxo`, no importa cual es cual, lo importante es que el emisor tenga control de esas dos utxo.
+Para esto utilizaremos el `cli` de bitcoin core, primero listamos nuestras transacciones de salida no gastadas y seleccionamos dos, una será la `issuance_utxo` y la otra `change_utxo`, no importa cual es cual, lo importante es que el emisor tenga control de esas dos utxo.
 
 ```bash
 $ alias bcli="bitcoin-cli -testnet"
@@ -337,6 +336,6 @@ $ rgb0-cli fungible list -l
 
 ```
 ## Conclusiones
-Hemos podido crear un token fungible y moverlo de una transacción a otra de manera privada, si chequeamos la transacción confirmada en un explorador de bloques no encontraríamos nada diferente a otra transacción, esto es gracias a que RGB utiliza single use seals para retocar las transacciones, en este post hago una [introducción a cómo funciona RGB](https://grunch.dev/es/blog/brief-intro-rgb/).
+Con esto hemos podido crear un token fungible y moverlo de una transacción a otra de manera privada, si chequeamos la transacción confirmada en un explorador de bloques no encontraríamos nada diferente a otra transacción, esto es gracias a que RGB utiliza single use seals para retocar las transacciones, en este post hago una [introducción a cómo funciona RGB](https://grunch.dev/es/blog/brief-intro-rgb/).
 
-Este post puede tener errores, si encuentras alguno por favor [házmelo saber](https://github.com/grunch/grunch.dev/issues) para mejorar la guía, las sugerencias y críticas también son bienvenidas, happy hacking! 🖖
+Este post puede tener errores, si encuentras alguno por favor [házmelo saber](https://github.com/grunch/grunch.dev/issues) para mejorar la guía, las sugerencias y críticas también son bienvenidas.
