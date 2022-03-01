@@ -181,7 +181,7 @@ Outpoint blinding secret: 1679197189805229975
 
 ```
 ## Transferencia
-Para transferir alguna cantidad del activo a `rgb-node-1` debemos enviarla al blinded UTXO, `rgb-node-0` necesitamos crear un consignment y un disclosure, y comprometerlo en una transacción de bitcoin. Entonces necesitaremos una transacción de bitcoin parcialmente firmada que modificaremos para incluir el compromiso. Además, las opciones `-i` y `-a` permiten proporcionar un utxo de entrada que sería el origen del activo y una `allocation` donde recibiremos el cambio, debemos indicarlo de la siguiente manera <cantidad>@<utxo>.
+Para transferir alguna cantidad del activo a `rgb-node-1` debemos enviarla al blinded UTXO, `rgb-node-0` necesita crear un consignment y un disclosure, y comprometerlo en una transacción de bitcoin. Entonces necesitaremos una transacción de bitcoin parcialmente firmada que modificaremos para incluir el compromiso. Además, las opciones `-i` y `-a` permiten proporcionar un utxo de entrada que sería el origen del activo y una `allocation` donde recibiremos el cambio, debemos indicarlo de la siguiente manera <cantidad>@<utxo>.
 
 ```bash
 $ rgb0-cli fungible transfer utxob16az597vp5nkr66nfzsykf8ngdnvzep5050rm00l7vv8wm7vew4jqj7jhhf 100 rgb1tadqzve7vwfh39sl6gvqenp8wegsrzreekhhu0dhthx08ppzj9wq8p0je6 tx.psbt consignment.rgb disclosure.rgb witness.psbt -i 4c1785210d8930959f530072cffea7f9606e0599b0de9e89aed60f2e9f133893:1 -a 900@cd66d3b77dfc1c2ecf958847c16a8a1311bba84ee7bf9dd55592a7b97b13028f:1
