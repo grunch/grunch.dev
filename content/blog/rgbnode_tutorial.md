@@ -5,7 +5,7 @@ date = 2021-11-08
 +++
 
 ## Introduction
-In this tutorial we explain how to use RGB-node to create a fungible token and how to transfer it, this document is based on [RGB-node demo](https://github.com/rgb-org/rgb-node/tree/master/doc/demo-0.1) and differs in that this tutorial uses `real` testnet data and for that, we must build our own Partial Signed Bitcoin Transaction, `psbt` from now on.
+In this tutorial we explain how to use RGB-node to create a fungible token and how to transfer it, this document is based on [RGB-node demo](https://github.com/rgb-org/rgb-node/tree/master/doc/demo-0.1) and differs in that this tutorial uses `real` testnet data and for that, we must build our own Partially Signed Bitcoin Transaction, `psbt` from now on.
 
 ## Requirements
 The use of a Linux distribution is recommended, this tutorial was written using `Pop!_OS`, which is based on Ubuntu and you will need:
@@ -32,6 +32,7 @@ $ git checkout 3f3c520c19d84c66d430e76f0fc68c5a66d79c84
 Now we compile it, don't forget to use `--locked` flag because there is a breaking change introduced on a version of `clap`.
 ```bash
 $ cargo install --path . --all-features --locked
+
 ....
 ....
     Finished release [optimized] target(s) in 2m 14s
@@ -44,7 +45,7 @@ $ cargo install --path . --all-features --locked
 ```
 As the rust compiler tells us, the binaries were copied to the `$HOME/.cargo/bin` directory, if your compiler copied them to a different place you must make sure that directory must be included in `$PATH`.
 
-Among the installed binaries we can see 3 `daemons` or services (the files that end in `d`) and a `cli` (command line interface), the cli allows us to interact with the main `rgbd` daemon. As in this tutorial we are going to run two nodes, we will also need two clients, each one must connect to its own node, for that we create two aliases.
+Among the installed binaries we can see three `daemons` or services (the files that end in `d`) and a `cli` (command line interface), the cli allows us to interact with the main `rgbd` daemon. As in this tutorial we are going to run two nodes, we will also need two clients, each one must connect to its own node, for that we create two aliases.
 
 ```bash
 alias rgb0-cli="$HOME/.cargo/bin/rgb-cli -d $HOME/rgbdata/data0 -n testnet"
@@ -66,7 +67,7 @@ For the sake of simplicity we will add this alias at the end of our `~/.bashrc` 
 ```bash
 alias bcli="bitcoin-cli -testnet"
 ```
-Let's list our unspent output transactions and select two, one will be the `issuance_utxo` and the other one `change_utxo`, it doesn't matter which is which, the important thing is that the issuer has control of these two utxo.
+Let's list our unspent output transactions and select two, one will be the `issuance_utxo` and the other one `change_utxo`, it doesn't matter which is which, the important thing is that the issuer has control of these two UTXO.
 
 ```bash
 $ bcli listunspent
@@ -116,7 +117,7 @@ $ bcli walletcreatefundedpsbt "[{\"txid\":\"4c1785210d8930959f530072cffea7f9606e
   "changepos": 0
 }
 ```
-The output gave us a `psbt` in base64 encoding which we will use to create a `tx.psbt`.
+The output gave us a `psbt` in base64 encoding which we will use to create `tx.psbt`.
 ```bash
 $ echo "cHNidP8BAHECAAAAAZM4E58uD9auiZ7esJkFbmD5p/7PcgBTn5UwiQ0hhRdMAQAAAAD/////ArM7GQAAAAAAFgAU4xQr/g1lgG2P9+gZudpFD8mOGGRQwwAAAAAAABYAFC4GuQXk0Nb34qnA987sZPitjv8GAAAAAAABAHECAAAAAYiK0TdTiaEs4oDovRokqspfLZr5EHYH8Pnj/Tv5GFB5AQAAAAD+////Av8Bh80AAAAAFgAUsLjOd30aRkUna41LAT5c3CnAz5obABoAAAAAABYAFJ1cXlDPuZG4vubQFDu1wqHMOubAyw8gAAEBHxsAGgAAAAAAFgAUnVxeUM+5kbi+5tAUO7XCocw65sAiBgMeD8mgPmkybD3uq/10mn97CU4xUa2pDNEwGe+sZjxWYxDskk+CAAAAgAAAAIAFAACAACICA2J21wOqW6bj7/ePTVI7QGvU6e4Sk8DhN5pmd9hrwSd7EOyST4IAAACAAQAAgAcAAIAAAA==" | base64 -d > tx.psbt
 ```
@@ -179,7 +180,7 @@ $ rgb0-cli fungible list
 ```
 
 ## Generate blinded UTXO
-In order to receive the new USDT, `rgb-node-1` needs to generate a blinded UTXO corresponding to `receive_utxo` to hold the asset
+In order to receive the new USDT, `rgb-node-1` needs to generate a blinded UTXO corresponding to `receive_utxo` to hold the asset.
 ```bash
 $ rgb1-cli fungible blind e40d9037e31d3f440552b30af16e764cf25ffda3899b4851cc4e38fd64718b09:0
 
@@ -190,7 +191,7 @@ Outpoint blinding secret: 1679197189805229975
 To be able to accept transfers related to this UTXO, we will need the original `receive_utxo` and the `blinding_factor`.
 
 ## Transfer
-To transfer some amount of the asset to `rgb-node-1` we need to send it to the blinded UTXO, `rgb-node-0` needs to create a `consignment` and a `disclosure`, and commit it into a bitcoin transaction. Then we will need a `psbt` which we will modify to include the commit. In addition, the `-i` and `-a` options allow us to provide an input `outpoint` that would be the origin of the asset and an `allocation` where we will receive the change, we must indicate it in the following way <amount>@<outpoint>.
+To transfer some amount of the asset to `rgb-node-1` we need to send it to the blinded UTXO, `rgb-node-0` needs to create a `consignment` and a `disclosure`, and commit it into a bitcoin transaction. Then we will need a `psbt` which we will modify to include the commit. In addition, the `-i` and `-a` options allow us to provide an input `outpoint` that would be the origin of the asset and an `allocation` where we will receive the change, we must indicate it in the following way <amount>@<change_utxo>.
 
 ```bash
 $ rgb0-cli fungible transfer utxob16az597vp5nkr66nfzsykf8ngdnvzep5050rm00l7vv8wm7vew4jqj7jhhf 100 rgb1tadqzve7vwfh39sl6gvqenp8wegsrzreekhhu0dhthx08ppzj9wq8p0je6 tx.psbt consignment.rgb disclosure.rgb witness.psbt -i 4c1785210d8930959f530072cffea7f9606e0599b0de9e89aed60f2e9f133893:1 -a 900@cd66d3b77dfc1c2ecf958847c16a8a1311bba84ee7bf9dd55592a7b97b13028f:1
@@ -309,7 +310,7 @@ $ rgb0-cli fungible list -l
 But as you can see `rgb-node-0` can't see the 900 asset change that we supplied to the `transfer` command with the `-a` argument. To register the change `rgb-node-0` needs to accept the disclosure.
 
 ```bash
-$ rgb0-cli fungible enclose disclosure.rgb 
+$ rgb0-cli fungible enclose disclosure.rgb
 
 Disclosure data successfully enclosed.
 ```
@@ -349,6 +350,6 @@ $ rgb0-cli fungible list -l
 
 ```
 ## Conclusions
-We have been able to create a fungible asset and move it from one transaction to another in a private way, if we check the confirmed transaction in a block explorer we would not find anything different from regular transaction, this is thanks to the fact that RGB uses single-use seals to tweak the transactions, In this post, I do an [intro to how RGB works](https://grunch.dev/es/blog/brief-intro-rgb/).
+We have been able to create a fungible asset and move it from one transaction to another in a private way, if we check the confirmed transaction in a block explorer we would not find anything different from regular transaction, this is thanks to the fact that RGB uses single-use seals to tweak the transactions, In this post, I do an [intro to how RGB works](https://grunch.dev/blog/brief-intro-rgb/).
 
 This post may have bugs, if you find something please [let me know](https://github.com/grunch/grunch.dev/issues) to improve this guide, [suggestions, and criticisms](https://twitter.com/negrunch) are also welcome, happy hacking! 🖖
