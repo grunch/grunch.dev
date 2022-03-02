@@ -1,7 +1,7 @@
 +++
 title = "Tutorial RGB-node"
 description = ""
-date = 2021-11-08
+date = 2022-02-25
 +++
 
 ## Introducción
