@@ -1,7 +1,7 @@
 +++
 title = "Communities in @LNp2pBot"
-description = "Giving more power to users"
-date = 2022-04-29
+description = "Power to the people"
+date = 2022-05-04
 +++
 ![Communities in @lnp2pBot](/images/communities.jpg)
 
