@@ -1,6 +1,6 @@
 +++
 title = "@LNp2pBot Communities tutorial"
-description = "Poder para la gente"
+description = "Power to the people"
 date = 2022-05-26
 +++
 
@@ -91,7 +91,7 @@ For this we have a new command `/findcomms`, which receives the currency code as
 
 ## Eligiendo una comunidad
 
-Now we select the community in which we want to participate and the bot will show us the number of successful orders and the volume traded in the last 24 hours in that community, below we see a button that says **Use by default**, when touching that button we are already participating in that community.
+Now we select the community in which we want to participate and the bot will show us the number of successful orders and the volume traded in the last 24 hours in that community, below we see a button that says **Use by default**, when tapping that button we are already participating in that community.
 
 ![Choosing](/images/comm-detail.jpg)
 
